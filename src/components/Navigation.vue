@@ -109,7 +109,12 @@ onUnmounted(() => {
             <LangSwitch />
             <ThemeToggle />
           </div>
-          <a :href="LINKS.tgChat" target="_blank" rel="noopener noreferrer">
+          <a
+            :href="LINKS.tgChat"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-cta"
+          >
             Telegram
           </a>
         </div>
@@ -267,27 +272,25 @@ onUnmounted(() => {
   }
 
   .nav-menu {
+    display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     background: var(--bg-primary);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-    transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease;
-    z-index: 5;
+    z-index: 9;
     padding: 5rem 2rem 2rem;
+    overflow-y: auto;
   }
 
   .nav-menu.open {
-    opacity: 1;
-    pointer-events: auto;
-    visibility: visible;
+    display: flex;
   }
 
   .nav-links {

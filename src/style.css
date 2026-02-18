@@ -97,8 +97,8 @@ body {
 }
 
 ::selection {
-  background: var(--accent);
-  color: white;
+  background: rgba(93, 186, 136, 0.3);
+  color: inherit;
 }
 
 ::-webkit-scrollbar {

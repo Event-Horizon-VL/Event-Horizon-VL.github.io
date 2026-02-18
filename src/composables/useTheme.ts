@@ -3,7 +3,7 @@ import { ref, onMounted } from "vue";
 export function useTheme() {
   const isDark = ref<boolean | null>(null);
 
-  const setTheme = (dark: boolean) => {
+  const applyTheme = (dark: boolean) => {
     isDark.value = dark;
 
     if (dark) {
@@ -17,19 +17,33 @@ export function useTheme() {
     if (checkbox instanceof HTMLInputElement) {
       checkbox.checked = !dark;
     }
-
-    localStorage.setItem("theme", dark ? "dark" : "light");
   };
 
   const toggleTheme = () => {
-    setTheme(!isDark.value);
+    const dark = !isDark.value;
+    applyTheme(dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
   };
 
   onMounted(() => {
     const saved = localStorage.getItem("theme");
-    const theme = !!(saved === "dark");
+    let dark: boolean;
 
-    setTheme(theme);
+    if (saved) {
+      dark = saved === "dark";
+    } else {
+      dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    applyTheme(dark);
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        if (!localStorage.getItem("theme")) {
+          applyTheme(e.matches);
+        }
+      });
 
     const checkbox = document.getElementById("theme-toggle");
 
