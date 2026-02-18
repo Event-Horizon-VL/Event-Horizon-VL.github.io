@@ -1,0 +1,68 @@
+<script setup lang="ts">
+defineProps<{
+  tabs: { value: string; label: string }[];
+  modelValue: string;
+}>();
+
+defineEmits<{
+  "update:modelValue": [value: string];
+}>();
+</script>
+
+<template>
+  <div class="tab-group">
+    <button
+      v-for="tab in tabs"
+      :key="tab.value"
+      :class="['tab-item', { active: modelValue === tab.value }]"
+      @click="$emit('update:modelValue', tab.value)"
+    >
+      {{ tab.label }}
+    </button>
+  </div>
+</template>
+
+<style scoped>
+.tab-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-item {
+  padding: 0.45rem 1rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  background: transparent;
+  border: 1px solid var(--surface-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab-item:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+
+.tab-item.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .tab-group {
+    gap: 0.35rem;
+  }
+
+  .tab-item {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+</style>
