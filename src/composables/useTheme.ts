@@ -32,7 +32,7 @@ export function useTheme() {
     if (saved) {
       dark = saved === "dark";
     } else {
-      dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 
     applyTheme(dark);
