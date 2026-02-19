@@ -87,7 +87,7 @@ const handleCopy = (command: string, step: number) => {
   margin: clamp(1.5rem, 3vw, 2.5rem) auto 0;
   padding: 1rem 1.25rem;
   background: var(--accent-subtle);
-  border: 1px solid var(--surface-border);
+  border: 0px solid var(--surface-border);
   border-radius: var(--radius-md);
   font-size: clamp(0.78rem, 1.1vw, 0.85rem);
   color: var(--text-secondary);

@@ -16,12 +16,12 @@ export type FeatureKey =
   | "security";
 
 export const FEATURE_KEYS: { key: FeatureKey; icon: string }[] = [
-  { key: "xbps", icon: "⚡" },
-  { key: "runit", icon: "🔧" },
-  { key: "musl", icon: "🐧" },
-  { key: "rolling", icon: "🔄" },
-  { key: "extra", icon: "📦" },
-  { key: "security", icon: "🛡️" },
+  { key: "xbps", icon: "nf-md-package_variant_closed" },
+  { key: "runit", icon: "nf-fa-angles_right" },
+  { key: "musl", icon: "nf-dev-c" },
+  { key: "rolling", icon: "nf-md-repeat" },
+  { key: "extra", icon: "nf-md-package_variant_closed_plus" },
+  { key: "security", icon: "nf-oct-shield_check" },
 ];
 
 export const PACKAGES = [

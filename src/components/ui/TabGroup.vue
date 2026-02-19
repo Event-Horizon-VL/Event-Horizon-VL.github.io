@@ -36,8 +36,8 @@ defineEmits<{
   font-size: 0.8rem;
   font-weight: 500;
   font-family: var(--font-sans);
-  background: transparent;
-  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  border: 0px solid var(--surface);
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -45,14 +45,18 @@ defineEmits<{
 }
 
 .tab-item:hover {
-  border-color: var(--text-muted);
-  color: var(--text-primary);
+  /* border: 2px solid var(--accent-bright); */
+  /* border-color: var(--accent-bright); */
+  /* color: var(--text-primary); */
+  border-color: var(--accent);
+  color: var(--accent-bright);
+  background: var(--accent-subtle);
 }
 
 .tab-item.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: white;
+  color: var(--bg-primary);
 }
 
 @media (max-width: 480px) {

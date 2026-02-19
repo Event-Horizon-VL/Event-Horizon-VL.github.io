@@ -17,7 +17,7 @@ defineProps<{
   align-items: center;
   gap: 0.5rem;
   background: var(--accent-subtle);
-  border: 1px solid var(--surface-border);
+  border: 0px solid var(--surface-border);
   padding: 0.4rem 1.2rem;
   border-radius: 100px;
   font-size: 0.85rem;

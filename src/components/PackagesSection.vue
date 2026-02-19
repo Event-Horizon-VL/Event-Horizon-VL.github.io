@@ -110,7 +110,7 @@ const copyCommand = (pkgName: string) => {
   gap: 2px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--surface-border);
+  border: 0px solid var(--surface-border);
 }
 
 .no-results {

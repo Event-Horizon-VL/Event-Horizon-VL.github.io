@@ -248,30 +248,33 @@ const buttons = computed(() => [
 
 .btn-primary {
   background: var(--accent);
-  color: white;
+  color: var(--bg-secondary);
   border: 1px solid var(--accent);
-  box-shadow: 0 0 30px rgba(93, 186, 136, 0.15);
+  /* box-shadow: 0 0 30px rgba(93, 186, 136, 0.15); */
 }
 
 .btn-primary:hover {
   background: var(--accent-bright);
   border-color: var(--accent-bright);
-  box-shadow: 0 0 40px rgba(93, 186, 136, 0.25);
-  transform: translateY(-2px);
-  color: white;
+  /* box-shadow: 0 0 40px rgba(93, 186, 136, 0.25); */
+  /* transform: translateY(-2px); */
+  color: var(--bg-primary);
 }
 
 .btn-secondary {
-  background: transparent;
+  background: var(--surface);
   color: var(--text-primary);
-  border: 1px solid var(--surface-border);
+  border: 0px solid var(--surface-border);
 }
 
 .btn-secondary:hover {
-  border-color: var(--text-muted);
-  background: var(--surface);
-  transform: translateY(-2px);
-  color: var(--text-primary);
+  /* border-color: var(--text-muted); */
+  /* background: var(--surface); */
+  /* transform: translateY(-2px); */
+  /* color: var(--text-primary); */
+  border-color: var(--accent);
+  color: var(--accent-bright);
+  background: var(--accent-subtle);
 }
 
 .hero-terminal {
