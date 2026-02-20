@@ -49,7 +49,7 @@ const emit = defineEmits<{
   height: clamp(36px, 5vw, 42px);
   border-radius: 50%;
   background: var(--accent);
-  color: white;
+  color: var(--bg-primary);
   font-weight: 800;
   font-size: clamp(0.85rem, 1.2vw, 1rem);
   flex-shrink: 0;

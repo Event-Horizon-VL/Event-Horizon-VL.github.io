@@ -53,7 +53,7 @@ defineProps<{
 }
 
 .feature-icon {
-  font-size: 2.25rem;
+  font-size: 3rem;
   margin-bottom: 0.85rem;
   display: flex;
   align-items: left;
