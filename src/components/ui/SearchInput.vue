@@ -58,7 +58,7 @@ const { t } = useI18n();
   width: 100%;
   padding: 0.85rem 1rem 0.85rem 2.75rem;
   background: var(--surface);
-  border: 1px solid var(--surface-border);
+  border: 0px solid var(--surface-border);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   font-family: var(--font-sans);
@@ -73,7 +73,7 @@ const { t } = useI18n();
 
 .search-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-subtle);
+  /* box-shadow: 0 0 0 3px var(--accent-subtle); */
 }
 
 @media (max-width: 480px) {

@@ -119,8 +119,8 @@ const emit = defineEmits<{
   width: 34px;
   height: 34px;
   border-radius: var(--radius-sm);
-  background: transparent;
-  border: 1px solid var(--surface-border);
+  background: var(--bg-tertiary);
+  border: 0px;
   color: var(--text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -128,8 +128,8 @@ const emit = defineEmits<{
 }
 
 .copy-btn:hover {
-  border-color: var(--accent);
   color: var(--accent-bright);
+  border-color: var(--accent);
   background: var(--accent-subtle);
 }
 

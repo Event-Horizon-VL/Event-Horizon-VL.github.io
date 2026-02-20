@@ -60,7 +60,7 @@ const copy = () => {
   align-items: center;
   gap: 0.75rem;
   background: var(--code-bg);
-  border: 1px solid var(--code-border);
+  border: 0px solid var(--code-border);
   border-radius: var(--radius-md);
   padding: 0.75rem 1rem;
   overflow-x: auto;
@@ -96,7 +96,7 @@ const copy = () => {
   width: 30px;
   height: 30px;
   border: none;
-  background: transparent;
+  background: var(--bg-tertiary);
   color: var(--text-muted);
   cursor: pointer;
   border-radius: var(--radius-sm);

@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="feature-card">
-    <div class="feature-icon">{{ icon }}</div>
+ <div class="feature-icon"> <i :class="`nf ${icon}`" /> </div>
     <h3 class="feature-title">{{ title }}</h3>
     <p class="feature-desc">{{ description }}</p>
   </div>
@@ -17,7 +17,7 @@ defineProps<{
 <style scoped>
 .feature-card {
   background: var(--surface);
-  border: 1px solid var(--surface-border);
+  border: 2px solid var(--surface);
   border-radius: var(--radius-lg);
   padding: clamp(1.25rem, 2.5vw, 2rem);
   transition: all 0.3s ease;
@@ -44,23 +44,24 @@ defineProps<{
 
 .feature-card:hover {
   border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-glow);
+  /* transform: translateY(-4px); */
+  /* box-shadow: var(--shadow-glow); */
 }
 
 .feature-card:hover::before {
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 .feature-icon {
-  font-size: 1.75rem;
+  font-size: 3rem;
   margin-bottom: 0.85rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   width: clamp(44px, 6vw, 56px);
   height: clamp(44px, 6vw, 56px);
-  background: var(--accent-subtle);
+  color: var(--accent-bright);
+  background: var(--surface);
   border-radius: var(--radius-md);
 }
 

@@ -92,11 +92,11 @@ export const en: Translation = {
     items: {
       vesktop: "Discord client (Vencord)",
       librewolf: "Privacy-focused Firefox fork",
-      "obs-studio": "Recording & streaming",
       "neovim-nightly": "Nightly Neovim build",
       hyprland: "Tiling Wayland compositor",
       "zen-browser": "Firefox-based browser",
-      lazygit: "Terminal Git client",
+      "sing-box": "Universal proxy platform",
+      "kanata": "Keyboard remap software",
     },
   },
 

@@ -29,7 +29,7 @@ const emit = defineEmits<{
   display: flex;
   gap: 1.5rem;
   background: var(--surface);
-  border: 1px solid var(--surface-border);
+  border: 0px solid var(--surface-border);
   border-radius: var(--radius-lg);
   padding: clamp(1rem, 2vw, 1.5rem);
   transition: all 0.2s ease;
@@ -38,7 +38,7 @@ const emit = defineEmits<{
 
 .step-card:hover {
   border-color: var(--accent);
-  box-shadow: var(--shadow-glow);
+  /* box-shadow: var(--shadow-glow); */
 }
 
 .step-number {
@@ -49,7 +49,7 @@ const emit = defineEmits<{
   height: clamp(36px, 5vw, 42px);
   border-radius: 50%;
   background: var(--accent);
-  color: white;
+  color: var(--bg-primary);
   font-weight: 800;
   font-size: clamp(0.85rem, 1.2vw, 1rem);
   flex-shrink: 0;

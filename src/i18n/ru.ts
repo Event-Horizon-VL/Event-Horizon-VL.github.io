@@ -91,12 +91,12 @@ export const ru: Translation = {
     },
     items: {
       vesktop: "Discord клиент (Vencord)",
-      librewolf: "Приватный форк Firefox",
-      "obs-studio": "Запись и стриминг",
+      librewolf: "Форк Firefox, ориентированный на приватность и безопасность",
       "neovim-nightly": "Nightly-сборка Neovim",
       hyprland: "Тайлинговый Wayland-композитор",
       "zen-browser": "Браузер на базе Firefox",
-      lazygit: "Консольный Git-клиент",
+      "sing-box": "Универсальная прокси-платформа",
+      "kanata": "Программа для переназначения клавиш",
     },
   },
 

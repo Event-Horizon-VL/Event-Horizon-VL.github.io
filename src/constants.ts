@@ -16,22 +16,21 @@ export type FeatureKey =
   | "security";
 
 export const FEATURE_KEYS: { key: FeatureKey; icon: string }[] = [
-  { key: "xbps", icon: "⚡" },
-  { key: "runit", icon: "🔧" },
-  { key: "musl", icon: "🐧" },
-  { key: "rolling", icon: "🔄" },
-  { key: "extra", icon: "📦" },
-  { key: "security", icon: "🛡️" },
+  { key: "xbps", icon: "nf-md-package_variant_closed" },
+  { key: "runit", icon: "nf-fa-angles_right" },
+  { key: "musl", icon: "nf-md-language_c" },
+  { key: "rolling", icon: "nf-md-repeat" },
+  { key: "extra", icon: "nf-md-package_variant_closed_plus" },
+  { key: "security", icon: "nf-oct-shield_check" },
 ];
 
 export const PACKAGES = [
   { name: "vesktop", version: "1.5.6", category: "net" },
   { name: "librewolf", version: "135.0", category: "net" },
-  { name: "obs-studio", version: "31.0.2", category: "multimedia" },
   { name: "neovim-nightly", version: "0.12.0", category: "editors" },
   { name: "hyprland", version: "0.53.2", category: "wm" },
   { name: "zen-browser", version: "1.8.2", category: "net" },
-  { name: "lazygit", version: "0.46.0", category: "devel" },
+  { name: "kanata", version: "1.10.1", category: "util" },
 ];
 
 export type InstallStepKey = "createAnEntry" | "refreshRepo" | "searchRepo";
