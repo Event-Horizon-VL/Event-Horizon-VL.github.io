@@ -75,8 +75,11 @@ export const ru: Translation = {
 
   packages: {
     title: "Пакеты",
-    subtitle:
-      "Дополнительные пакеты, собранные специально для Void Linux. Устанавливайте через XBPS.",
+    subtitle: "Локальный каталог пакетов временно недоступен.",
+    unavailableTitle: "Список пакетов временно недоступен",
+    unavailableDescription:
+      "Актуальный список пакетов, ветки и заметки по установке смотрите на GitHub.",
+    githubLink: "Смотреть на GitHub",
     searchPlaceholder: "Поиск пакетов...",
     noResults: "Пакеты не найдены",
     copyTitle: "Скопировать команду установки",
@@ -96,7 +99,7 @@ export const ru: Translation = {
       hyprland: "Тайлинговый Wayland-композитор",
       "zen-browser": "Браузер на базе Firefox",
       "sing-box": "Универсальная прокси-платформа",
-      "kanata": "Программа для переназначения клавиш",
+      kanata: "Программа для переназначения клавиш",
     },
   },
 

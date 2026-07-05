@@ -52,6 +52,9 @@ export interface Translation {
   packages: {
     title: string;
     subtitle: string;
+    unavailableTitle: string;
+    unavailableDescription: string;
+    githubLink: string;
     searchPlaceholder: string;
     noResults: string;
     copyTitle: string;

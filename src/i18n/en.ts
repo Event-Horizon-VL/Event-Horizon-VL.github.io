@@ -75,8 +75,11 @@ export const en: Translation = {
 
   packages: {
     title: "Packages",
-    subtitle:
-      "Additional packages built specifically for Void Linux. Install via XBPS.",
+    subtitle: "The local package catalog is temporarily unavailable.",
+    unavailableTitle: "Package list is temporarily unavailable",
+    unavailableDescription:
+      "Check GitHub for the current package list, branches and installation notes.",
+    githubLink: "View on GitHub",
     searchPlaceholder: "Search packages...",
     noResults: "No packages found",
     copyTitle: "Copy install command",
@@ -96,7 +99,7 @@ export const en: Translation = {
       hyprland: "Tiling Wayland compositor",
       "zen-browser": "Firefox-based browser",
       "sing-box": "Universal proxy platform",
-      "kanata": "Keyboard remap software",
+      kanata: "Keyboard remap software",
     },
   },
 

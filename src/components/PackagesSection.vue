@@ -1,48 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { PACKAGES } from "../constants";
+import { LINKS } from "../constants";
 import { useI18n } from "../i18n";
 import SectionHeader from "./ui/SectionHeader.vue";
-import SearchInput from "./ui/SearchInput.vue";
-import TabGroup from "./ui/TabGroup.vue";
-import PackageRow from "./ui/PackageRow.vue";
 
 const { t } = useI18n();
 
-const search = ref("");
-const selectedCategory = ref("all");
-
-const categories = computed(() => {
-  const cats = t.value.packages.categories;
-  return [
-    { value: "all", label: cats.all },
-    { value: "net", label: cats.net },
-    { value: "multimedia", label: cats.multimedia },
-    { value: "editors", label: cats.editors },
-    { value: "wm", label: cats.wm },
-    { value: "devel", label: cats.devel },
-    { value: "utils", label: cats.utils },
-  ];
-});
-
-const filteredPackages = computed(() => {
-  const items = t.value.packages.items;
-  return PACKAGES.filter((pkg) => {
-    const desc = items[pkg.name] ?? pkg.name;
-    const matchesSearch =
-      !search.value ||
-      pkg.name.toLowerCase().includes(search.value.toLowerCase()) ||
-      desc.toLowerCase().includes(search.value.toLowerCase());
-    const matchesCategory =
-      selectedCategory.value === "all" ||
-      pkg.category === selectedCategory.value;
-    return matchesSearch && matchesCategory;
-  });
-});
-
-const copyCommand = (pkgName: string) => {
-  navigator.clipboard.writeText(`sudo xbps-install -S ${pkgName}`);
-};
+const installationUrl = `${LINKS.github}#installation`;
 </script>
 
 <template>
@@ -55,32 +18,50 @@ const copyCommand = (pkgName: string) => {
         </template>
       </SectionHeader>
 
-      <div class="packages-controls">
-        <div class="search-wrapper">
-          <SearchInput
-            v-model="search"
-            :placeholder="t.packages.searchPlaceholder"
-          />
+      <div class="packages-unavailable">
+        <div class="packages-unavailable-icon" aria-hidden="true">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+            />
+            <path d="M3.27 6.96 12 12.01l8.73-5.05" />
+            <path d="M12 22.08V12" />
+          </svg>
         </div>
-        <TabGroup :tabs="categories" v-model="selectedCategory" />
+        <div class="packages-unavailable-content">
+          <h3>{{ t.packages.unavailableTitle }}</h3>
+          <p>{{ t.packages.unavailableDescription }}</p>
+          <a
+            :href="installationUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="packages-github-link"
+          >
+            {{ t.packages.githubLink }}
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+        </div>
       </div>
 
-      <div class="packages-list">
-        <PackageRow
-          v-for="pkg in filteredPackages"
-          :key="pkg.name"
-          :name="pkg.name"
-          :version="pkg.version"
-          :description="t.packages.items[pkg.name] ?? pkg.name"
-          :category="pkg.category"
-          :copyTitle="t.packages.copyTitle"
-          @copy="copyCommand"
-        />
-
-        <div v-if="filteredPackages.length === 0" class="no-results">
-          <p>{{ t.packages.noResults }}</p>
-        </div>
-      </div>
+      <!-- Package search and category menu are temporarily disabled. Use GitHub for the current package list. -->
     </div>
   </section>
 </template>
@@ -91,32 +72,57 @@ const copyCommand = (pkgName: string) => {
   background: var(--bg-secondary);
 }
 
-.packages-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-.search-wrapper {
-  max-width: 500px;
+.packages-unavailable {
+  max-width: 750px;
   margin: 0 auto;
-  width: 100%;
-}
-
-.packages-list {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--surface);
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 0px solid var(--surface-border);
+  border: 1px solid var(--surface-border);
 }
 
-.no-results {
-  padding: clamp(2rem, 4vw, 3rem);
-  text-align: center;
-  color: var(--text-muted);
-  background: var(--surface);
+.packages-unavailable-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  color: var(--accent-bright);
+  background: var(--accent-subtle);
+  border-radius: var(--radius-md);
+}
+
+.packages-unavailable-content h3 {
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+.packages-unavailable-content p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.packages-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--accent-bright);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.packages-github-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 560px) {
+  .packages-unavailable {
+    flex-direction: column;
+  }
 }
 </style>

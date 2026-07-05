@@ -1,5 +1,5 @@
 export const LINKS = {
-  github: "https://github.com/Nizarjh/blackhole-vl",
+  github: "https://github.com/Event-Horizon-VL/blackhole-vl",
   tgChat: "https://t.me/chat_of_linux",
   donate: "http://buymeacoffee.com/nizarjh",
   voidOfficial: "https://voidlinux.org",
