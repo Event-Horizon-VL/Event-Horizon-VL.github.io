@@ -1,22 +1,32 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { INSTALL_STEPS } from "../constants";
+import { computed, ref } from "vue";
+import { INSTALL_STEPS, SUPPORTED_ARCHITECTURES } from "../constants";
 import { useI18n } from "../i18n";
 import SectionHeader from "./ui/SectionHeader.vue";
 import StepCard from "./ui/StepCard.vue";
 import CodeBlock from "./ui/CodeBlock.vue";
 
 const { t } = useI18n();
+const selectedArchitecture = ref("x86_64");
 
-const copiedStep = ref<number | null>(null);
+const getInstallCommand = (key: string, command: string) => {
+  if (key !== "configureMirror") return command;
 
-const handleCopy = (command: string, step: number) => {
-  navigator.clipboard.writeText(command);
-  copiedStep.value = step;
-  setTimeout(() => {
-    copiedStep.value = null;
-  }, 2000);
+  return `sudo cp /usr/share/xbps.d/00-repository-main.conf /etc/xbps.d/\nsudo sed -i "1i repository=https://mirror.black-hole.dev/${selectedArchitecture.value}" /etc/xbps.d/00-repository-main.conf`;
 };
+
+const installGroups = computed(() =>
+  INSTALL_STEPS.map((group) => ({
+    key: group.key,
+    title: t.value.install.groups[group.key].title,
+    note: t.value.install.groups[group.key].note,
+    steps: group.steps.map((item) => ({
+      ...item,
+      title: t.value.install.steps[item.key],
+      command: getInstallCommand(item.key, item.command),
+    })),
+  })),
+);
 </script>
 
 <template>
@@ -29,20 +39,53 @@ const handleCopy = (command: string, step: number) => {
         </template>
       </SectionHeader>
 
-      <div class="steps">
-        <StepCard
-          v-for="item in INSTALL_STEPS"
-          :key="item.step"
-          :step="item.step"
-          :title="t.install.steps[item.key]"
-          :command="item.command"
-          @copy="(cmd) => handleCopy(cmd, item.step)"
-        >
-          <template #default>
-            <CodeBlock :code="item.command" />
-          </template>
-        </StepCard>
+      <div class="install-architectures">
+        <p>{{ t.install.architecturesTitle }}</p>
+        <ul class="architecture-list">
+          <li v-for="arch in SUPPORTED_ARCHITECTURES" :key="arch">
+            <code>{{ arch }}</code>
+          </li>
+        </ul>
       </div>
+
+      <details
+        v-for="group in installGroups"
+        :key="group.key"
+        class="install-group"
+        :open="group.key === 'prebuilt'"
+      >
+        <summary>
+          <span>{{ group.title }}</span>
+        </summary>
+        <p class="install-group-note">{{ group.note }}</p>
+
+        <label v-if="group.key === 'prebuilt'" class="architecture-selector">
+          <span>{{ t.install.architectureSelector }}</span>
+          <select v-model="selectedArchitecture">
+            <option
+              v-for="arch in SUPPORTED_ARCHITECTURES"
+              :key="arch"
+              :value="arch"
+            >
+              {{ arch }}
+            </option>
+          </select>
+        </label>
+
+        <div class="steps">
+          <StepCard
+            v-for="item in group.steps"
+            :key="`${group.key}-${item.step}`"
+            :step="item.step"
+            :title="item.title"
+            :command="item.command"
+          >
+            <template #default>
+              <CodeBlock :code="item.command" />
+            </template>
+          </StepCard>
+        </div>
+      </details>
 
       <div class="install-note">
         <svg
@@ -71,9 +114,84 @@ const handleCopy = (command: string, step: number) => {
   position: relative;
 }
 
-.steps {
+.install-architectures {
   max-width: 750px;
-  margin: 0 auto;
+  margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+}
+
+.install-architectures p {
+  margin-bottom: 0.85rem;
+  line-height: 1.6;
+}
+
+.architecture-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.architecture-list code {
+  display: inline-flex;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--code-bg);
+  color: var(--accent-bright);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.install-group {
+  max-width: 750px;
+  margin: 0 auto 1rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+}
+
+.install-group summary {
+  cursor: pointer;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+}
+
+.install-group-note {
+  margin: 0.85rem 0 1rem;
+  color: var(--text-secondary);
+  font-size: clamp(0.78rem, 1.1vw, 0.9rem);
+  line-height: 1.6;
+}
+
+.architecture-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: clamp(0.78rem, 1.1vw, 0.9rem);
+}
+
+.architecture-selector select {
+  min-width: 170px;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.65rem;
+  background: var(--surface);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.steps {
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -101,6 +219,15 @@ const handleCopy = (command: string, step: number) => {
 }
 
 @media (max-width: 480px) {
+  .architecture-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .architecture-selector select {
+    width: 100%;
+  }
+
   .install-note {
     padding: 0.85rem 1rem;
     gap: 0.6rem;

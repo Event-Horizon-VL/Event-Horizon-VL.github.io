@@ -33,27 +33,95 @@ export const PACKAGES = [
   { name: "kanata", version: "1.10.1", category: "util" },
 ];
 
-export type InstallStepKey = "createAnEntry" | "refreshRepo" | "searchRepo";
+export const SUPPORTED_ARCHITECTURES = [
+  "x86_64",
+  "x86_64-musl",
+  "aarch64",
+  "aarch64-musl",
+];
+
+export type InstallGroupKey = "manual" | "prebuilt";
+
+export type InstallStepKey =
+  | "cloneRepositories"
+  | "switchBranch"
+  | "copyTemplates"
+  | "editShlibs"
+  | "bootstrapBuild"
+  | "buildPackages"
+  | "installBuiltPackages"
+  | "configureMirror"
+  | "refreshRepo"
+  | "searchRepo";
 
 export const INSTALL_STEPS: {
-  step: number;
-  key: InstallStepKey;
-  command: string;
+  key: InstallGroupKey;
+  steps: {
+    step: number;
+    key: InstallStepKey;
+    command: string;
+  }[];
 }[] = [
   {
-    step: 1,
-    key: "createAnEntry",
-    command:
-      "echo repository=https://raw.githubusercontent.com/Nizarjh/blackhole-vl/repository-x86_64 | sudo tee /etc/xbps.d/20-repository-extra.conf",
+    key: "manual",
+    steps: [
+      {
+        step: 1,
+        key: "cloneRepositories",
+        command:
+          "git clone https://github.com/Event-Horizon-VL/blackhole-vl.git\ngit clone https://github.com/void-linux/void-packages.git",
+      },
+      {
+        step: 2,
+        key: "switchBranch",
+        command: "cd blackhole-vl\ngit checkout manual",
+      },
+      {
+        step: 3,
+        key: "copyTemplates",
+        command: "cp -r blackhole-vl/srcpkgs/* void-packages/srcpkgs/",
+      },
+      {
+        step: 4,
+        key: "editShlibs",
+        command: "cd void-packages\nnvim common/shlibs",
+      },
+      {
+        step: 5,
+        key: "bootstrapBuild",
+        command: "./xbps-src binary-bootstrap",
+      },
+      {
+        step: 6,
+        key: "buildPackages",
+        command: "./xbps-src pkg <package1> <package2> ...",
+      },
+      {
+        step: 7,
+        key: "installBuiltPackages",
+        command:
+          "sudo xbps-install --repository /hostdir/binpkgs/ <package1> <package2> ...",
+      },
+    ],
   },
   {
-    step: 2,
-    key: "refreshRepo",
-    command: "sudo xbps-install -S",
-  },
-  {
-    step: 3,
-    key: "searchRepo",
-    command: `xbps-query -Rs hypr && sudo xbps-install -S hyprland`,
+    key: "prebuilt",
+    steps: [
+      {
+        step: 1,
+        key: "configureMirror",
+        command: `sudo cp /usr/share/xbps.d/00-repository-main.conf /etc/xbps.d/\nsudo sed -i "1i repository=https://mirror.black-hole.dev/$(xbps-uhelper arch)" /etc/xbps.d/00-repository-main.conf`,
+      },
+      {
+        step: 2,
+        key: "refreshRepo",
+        command: "sudo xbps-install -S",
+      },
+      {
+        step: 3,
+        key: "searchRepo",
+        command: "xbps-query -Rs hypr\nsudo xbps-install -S hyprland",
+      },
+    ],
   },
 ];

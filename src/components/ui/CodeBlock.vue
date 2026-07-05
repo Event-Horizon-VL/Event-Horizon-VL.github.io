@@ -71,9 +71,8 @@ const copy = () => {
   font-size: clamp(0.72rem, 1.2vw, 0.85rem);
   color: var(--accent-bright);
   flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 640px) {

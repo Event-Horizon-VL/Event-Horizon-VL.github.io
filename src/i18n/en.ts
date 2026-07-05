@@ -106,13 +106,34 @@ export const en: Translation = {
   install: {
     title: "Installation",
     subtitle:
-      "Connect the repository in a few simple steps. Works on glibc and musl.",
-    steps: {
-      createAnEntry: "Create an entry",
-      refreshRepo: "Refresh repositories",
-      searchRepo: "Search and install",
+      "Choose prebuilt binaries from the main branch or build packages locally from templates.",
+    architecturesTitle:
+      "Currently packages are tested on / crosscompiled for the following architectures:",
+    architectureSelector: "Target architecture",
+    groups: {
+      manual: {
+        title: "Manually building",
+        note: "Recommended for the manual branch.",
+      },
+      prebuilt: {
+        title: "Prebuilt binaries",
+        note: "Available only for the main branch.",
+      },
     },
-    note: "This is an unofficial repository. Use at your own risk. Packages are signed and regularly updated.",
+    steps: {
+      cloneRepositories: "Clone this repository and void-packages",
+      switchBranch: "Optionally switch to a specific branch",
+      copyTemplates: "Copy template files into void-packages",
+      editShlibs:
+        "Edit shlibs: remove shlibs_remove lines and append shlibs_append",
+      bootstrapBuild: "Bootstrap the build system",
+      buildPackages: "Build the desired packages",
+      installBuiltPackages: "Install the built packages",
+      configureMirror: "Add the Blackhole mirror with higher priority",
+      refreshRepo: "Refresh repositories and accept the fingerprint",
+      searchRepo: "Search and install packages",
+    },
+    note: "Old GitHub-based binary repositories are deprecated. If you used the old setup, remove /etc/xbps.d/20-repository-extra.conf before adding the current mirror.",
   },
 
   footer: {

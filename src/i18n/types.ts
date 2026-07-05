@@ -73,8 +73,27 @@ export interface Translation {
   install: {
     title: string;
     subtitle: string;
+    architecturesTitle: string;
+    architectureSelector: string;
+    groups: {
+      manual: {
+        title: string;
+        note: string;
+      };
+      prebuilt: {
+        title: string;
+        note: string;
+      };
+    };
     steps: {
-      createAnEntry: string;
+      cloneRepositories: string;
+      switchBranch: string;
+      copyTemplates: string;
+      editShlibs: string;
+      bootstrapBuild: string;
+      buildPackages: string;
+      installBuiltPackages: string;
+      configureMirror: string;
       refreshRepo: string;
       searchRepo: string;
     };
