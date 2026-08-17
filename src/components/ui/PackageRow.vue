@@ -4,26 +4,49 @@ defineProps<{
   version: string;
   description: string;
   category?: string;
+  href?: string;
   copyTitle?: string;
 }>();
 
 const emit = defineEmits<{
   copy: [name: string];
 }>();
+
+const openLink = (href?: string) => {
+  if (href) window.open(href, "_blank", "noopener,noreferrer");
+};
 </script>
 
 <template>
-  <div class="package-row">
+  <div
+    class="package-row"
+    :class="{ clickable: href }"
+    @click="openLink(href)"
+  >
     <div class="package-info">
       <div class="package-name-row">
-        <span class="package-name">{{ name }}</span>
+        <a
+          v-if="href"
+          :href="href"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="package-name"
+          @click.stop
+        >
+          {{ name }}
+        </a>
+        <span v-else class="package-name">{{ name }}</span>
         <span class="package-version">{{ version }}</span>
       </div>
       <p class="package-desc">{{ description }}</p>
     </div>
     <div class="package-actions">
       <span v-if="category" class="package-category">{{ category }}</span>
-      <button class="copy-btn" @click="emit('copy', name)" :title="copyTitle">
+      <button
+        class="copy-btn"
+        @click.stop="emit('copy', name)"
+        :title="copyTitle"
+      >
         <svg
           width="16"
           height="16"
@@ -50,7 +73,11 @@ const emit = defineEmits<{
   transition: all 0.15s ease;
 }
 
-.package-row:hover {
+.package-row.clickable {
+  cursor: pointer;
+}
+
+.package-row.clickable:hover {
   background: var(--surface-hover);
 }
 
@@ -72,6 +99,11 @@ const emit = defineEmits<{
   font-weight: 600;
   font-size: clamp(0.82rem, 1.2vw, 0.95rem);
   color: var(--accent-bright);
+  text-decoration: none;
+}
+
+a.package-name:hover {
+  text-decoration: underline;
 }
 
 .package-version {
