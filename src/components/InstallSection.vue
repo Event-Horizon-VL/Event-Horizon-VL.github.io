@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { INSTALL_STEPS, SUPPORTED_ARCHITECTURES } from "../constants";
+import { INSTALL_STEPS, LINKS, SUPPORTED_ARCHITECTURES } from "../constants";
 import { useI18n } from "../i18n";
 import SectionHeader from "./ui/SectionHeader.vue";
 import StepCard from "./ui/StepCard.vue";
@@ -8,6 +8,8 @@ import CodeBlock from "./ui/CodeBlock.vue";
 
 const { t } = useI18n();
 const selectedArchitecture = ref("x86_64");
+
+const ruMirrorCommand = `sudo cp /usr/share/xbps.d/00-repository-main.conf /etc/xbps.d/\nsudo sed -i "1i repository=${LINKS.ruMirror}/$(xbps-uhelper arch)" /etc/xbps.d/00-repository-main.conf\nsudo xbps-install -S`;
 
 const getInstallCommand = (key: string, command: string) => {
   if (key !== "configureMirror") return command;
@@ -87,6 +89,34 @@ const installGroups = computed(() =>
         </div>
       </details>
 
+      <div class="install-ru-mirror">
+        <div class="ru-mirror-head">
+          <span class="ru-mirror-title">{{ t.install.ruMirror.title }}</span>
+          <a
+            :href="LINKS.ruMirror"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ru-mirror-url"
+          >
+            ru.mirror.black-hole.dev
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+        </div>
+        <p class="ru-mirror-description">
+          {{ t.install.ruMirror.description }}
+        </p>
+        <CodeBlock :code="ruMirrorCommand" />
+      </div>
+
       <div class="install-note">
         <svg
           width="18"
@@ -115,7 +145,7 @@ const installGroups = computed(() =>
 }
 
 .install-architectures {
-  max-width: 750px;
+  max-width: 1100px;
   margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
   padding: 1rem 1.25rem;
   background: var(--surface);
@@ -146,7 +176,7 @@ const installGroups = computed(() =>
 }
 
 .install-group {
-  max-width: 750px;
+  max-width: 1100px;
   margin: 0 auto 1rem;
   padding: 1rem;
   background: var(--surface);
@@ -201,7 +231,7 @@ const installGroups = computed(() =>
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  max-width: 750px;
+  max-width: 1100px;
   margin: clamp(1.5rem, 3vw, 2.5rem) auto 0;
   padding: 1rem 1.25rem;
   background: var(--accent-subtle);
@@ -209,6 +239,51 @@ const installGroups = computed(() =>
   border-radius: var(--radius-md);
   font-size: clamp(0.78rem, 1.1vw, 0.85rem);
   color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.install-ru-mirror {
+  max-width: 1100px;
+  margin: clamp(1.5rem, 3vw, 2.5rem) auto 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+}
+
+.ru-mirror-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.ru-mirror-title {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+}
+
+.ru-mirror-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-bright);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.ru-mirror-url:hover {
+  text-decoration: underline;
+}
+
+.ru-mirror-description {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: clamp(0.78rem, 1.1vw, 0.9rem);
   line-height: 1.6;
 }
 
