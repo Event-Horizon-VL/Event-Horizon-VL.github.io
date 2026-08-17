@@ -22,7 +22,6 @@ const t = computed<Translation>(() => translations[locale.value]);
 watchEffect(() => {
   localStorage.setItem(STORAGE_KEY, locale.value);
   document.documentElement.lang = locale.value;
-  document.title = t.value.meta.title;
 
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) {
