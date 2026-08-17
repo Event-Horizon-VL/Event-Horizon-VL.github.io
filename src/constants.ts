@@ -1,11 +1,13 @@
 export const LINKS = {
   api: "/api",
   github: "https://github.com/Event-Horizon-VL/blackhole-vl",
+  srcpkgs: "https://github.com/Event-Horizon-VL/blackhole-vl/tree/main/srcpkgs",
   tgChat: "https://t.me/chat_of_linux",
   donate: "http://buymeacoffee.com/nizarjh",
   voidOfficial: "https://voidlinux.org",
   voidDocs: "https://docs.voidlinux.org",
   voidPackages: "https://github.com/void-linux/void-packages",
+  ruMirror: "https://ru.mirror.black-hole.dev",
 };
 
 export type FeatureKey =
