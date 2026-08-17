@@ -3,7 +3,7 @@ defineProps<{
   name: string;
   version: string;
   description: string;
-  category: string;
+  category?: string;
   copyTitle?: string;
 }>();
 
@@ -22,7 +22,7 @@ const emit = defineEmits<{
       <p class="package-desc">{{ description }}</p>
     </div>
     <div class="package-actions">
-      <span class="package-category">{{ category }}</span>
+      <span v-if="category" class="package-category">{{ category }}</span>
       <button class="copy-btn" @click="emit('copy', name)" :title="copyTitle">
         <svg
           width="16"

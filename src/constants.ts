@@ -1,4 +1,5 @@
 export const LINKS = {
+  api: "/api",
   github: "https://github.com/Event-Horizon-VL/blackhole-vl",
   tgChat: "https://t.me/chat_of_linux",
   donate: "http://buymeacoffee.com/nizarjh",
@@ -22,15 +23,6 @@ export const FEATURE_KEYS: { key: FeatureKey; icon: string }[] = [
   { key: "rolling", icon: "nf-md-repeat" },
   { key: "extra", icon: "nf-md-package_variant_closed_plus" },
   { key: "security", icon: "nf-oct-shield_check" },
-];
-
-export const PACKAGES = [
-  { name: "vesktop", version: "1.5.6", category: "net" },
-  { name: "librewolf", version: "135.0", category: "net" },
-  { name: "neovim-nightly", version: "0.12.0", category: "editors" },
-  { name: "hyprland", version: "0.53.2", category: "wm" },
-  { name: "zen-browser", version: "1.8.2", category: "net" },
-  { name: "kanata", version: "1.10.1", category: "util" },
 ];
 
 export const SUPPORTED_ARCHITECTURES = [
