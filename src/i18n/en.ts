@@ -2,9 +2,9 @@ import type { Translation } from "./types";
 
 export const en: Translation = {
   meta: {
-    title: "Void Linux  Unofficial Repository",
+    title: "BlackHole — Unofficial Void Linux Repository",
     description:
-      "Unofficial Void Linux repository  packages, guides, community",
+      "Unofficial Void Linux repository with additional XBPS packages, including Hyprland, build templates and installation guides.",
   },
 
   nav: {
@@ -22,7 +22,7 @@ export const en: Translation = {
     titlePrefix: "Supercharge your",
     titleHighlight: "Void Linux",
     description:
-      "Extra packages, optimized builds and tools for Void Linux. Built by the community  for the community.",
+      "Unofficial repository for Void Linux: additional XBPS packages (Hyprland and more), templates and build scripts.",
     btnInstall: "Connect repository",
     btnTelegram: "Telegram Chat",
     terminalDownloading: "[*] Downloading packages...",
@@ -67,15 +67,15 @@ export const en: Translation = {
       },
       security: {
         title: "Security",
-        description:
-          "Signed packages, minimal attack surface, regular security updates.",
+        description: "Signed packages and frequent updates.",
       },
     },
   },
 
   packages: {
     title: "Packages",
-    subtitle: "The local package catalog is temporarily unavailable.",
+    subtitle:
+      "Additional packages built specifically for Void Linux. Install via XBPS.",
     unavailableTitle: "Package list is temporarily unavailable",
     unavailableDescription:
       "Check GitHub for the current package list, branches and installation notes.",
@@ -92,48 +92,44 @@ export const en: Translation = {
       devel: "Development",
       utils: "Utilities",
     },
-    items: {
-      vesktop: "Discord client (Vencord)",
-      librewolf: "Privacy-focused Firefox fork",
-      "neovim-nightly": "Nightly Neovim build",
-      hyprland: "Tiling Wayland compositor",
-      "zen-browser": "Firefox-based browser",
-      "sing-box": "Universal proxy platform",
-      kanata: "Keyboard remap software",
-    },
   },
 
   install: {
     title: "Installation",
     subtitle:
-      "Choose prebuilt binaries from the main branch or build packages locally from templates.",
+      "Install prebuilt binaries from the main branch or build packages locally from templates.",
     architecturesTitle:
-      "Currently packages are tested on / crosscompiled for the following architectures:",
-    architectureSelector: "Target architecture",
+      "Packages are built and tested for the following architectures:",
+    architectureSelector: "Architecture",
     groups: {
       manual: {
-        title: "Manually building",
-        note: "Recommended for the manual branch.",
+        title: "Build from source",
+        note: "For the manual branch.",
       },
       prebuilt: {
         title: "Prebuilt binaries",
-        note: "Available only for the main branch.",
+        note: "For the main branch only.",
       },
+    },
+    ruMirror: {
+      title: "Russian mirror",
+      description:
+        "Recommended for users in Russia and the CIS: lower latency and faster package downloads.",
     },
     steps: {
       cloneRepositories: "Clone this repository and void-packages",
-      switchBranch: "Optionally switch to a specific branch",
-      copyTemplates: "Copy template files into void-packages",
+      switchBranch: "Switch to the required branch if needed",
+      copyTemplates: "Copy the templates into void-packages",
       editShlibs:
-        "Edit shlibs: remove shlibs_remove lines and append shlibs_append",
+        "Edit shlibs: remove the shlibs_remove entries and append shlibs_append",
       bootstrapBuild: "Bootstrap the build system",
-      buildPackages: "Build the desired packages",
+      buildPackages: "Build the packages you need",
       installBuiltPackages: "Install the built packages",
       configureMirror: "Add the Blackhole mirror with higher priority",
-      refreshRepo: "Refresh repositories and accept the fingerprint",
+      refreshRepo: "Refresh repositories",
       searchRepo: "Search and install packages",
     },
-    note: "Old GitHub-based binary repositories are deprecated. If you used the old setup, remove /etc/xbps.d/20-repository-extra.conf before adding the current mirror.",
+    note: "The old GitHub-hosted binary repositories are deprecated. If you used the old setup, remove /etc/xbps.d/20-repository-extra.conf before adding the current mirror.",
   },
 
   footer: {

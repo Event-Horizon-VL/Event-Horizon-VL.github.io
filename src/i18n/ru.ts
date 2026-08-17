@@ -2,9 +2,9 @@ import type { Translation } from "./types";
 
 export const ru: Translation = {
   meta: {
-    title: "Void Linux  Неофициальный репозиторий",
+    title: "BlackHole — неофициальный репозиторий Void Linux",
     description:
-      "Неофициальный репозиторий Void Linux  пакеты, инструкции, сообщество",
+      "Неофициальный репозиторий Void Linux: дополнительные XBPS-пакеты, включая Hyprland, шаблоны сборки и инструкции по установке.",
   },
 
   nav: {
@@ -22,7 +22,7 @@ export const ru: Translation = {
     titlePrefix: "Расширь свой",
     titleHighlight: "Void Linux",
     description:
-      "Дополнительные пакеты, оптимизированные сборки и инструменты для Void Linux. Создано сообществом  для сообщества.",
+      "Неофициальный репозиторий для Void Linux: дополнительные XBPS-пакеты (Hyprland и не только), шаблоны и скрипты сборки.",
     btnInstall: "Подключить репозиторий",
     btnTelegram: "Чат в Telegram",
     terminalDownloading: "[*] Downloading packages...",
@@ -67,15 +67,15 @@ export const ru: Translation = {
       },
       security: {
         title: "Безопасность",
-        description:
-          "Подписанные пакеты, минимальная поверхность атаки, регулярные обновления безопасности.",
+        description: "Подписанные пакеты и частые обновления.",
       },
     },
   },
 
   packages: {
     title: "Пакеты",
-    subtitle: "Локальный каталог пакетов временно недоступен.",
+    subtitle:
+      "Дополнительные пакеты, собранные специально для Void Linux. Устанавливайте через XBPS.",
     unavailableTitle: "Список пакетов временно недоступен",
     unavailableDescription:
       "Актуальный список пакетов, ветки и заметки по установке смотрите на GitHub.",
@@ -92,48 +92,43 @@ export const ru: Translation = {
       devel: "Разработка",
       utils: "Утилиты",
     },
-    items: {
-      vesktop: "Discord клиент (Vencord)",
-      librewolf: "Форк Firefox, ориентированный на приватность и безопасность",
-      "neovim-nightly": "Nightly-сборка Neovim",
-      hyprland: "Тайлинговый Wayland-композитор",
-      "zen-browser": "Браузер на базе Firefox",
-      "sing-box": "Универсальная прокси-платформа",
-      kanata: "Программа для переназначения клавиш",
-    },
   },
 
   install: {
     title: "Установка",
     subtitle:
-      "Используйте готовые бинарные пакеты из ветки main или собирайте пакеты локально из шаблонов.",
-    architecturesTitle:
-      "Сейчас пакеты тестируются и кросс-компилируются для следующих архитектур:",
-    architectureSelector: "Целевая архитектура",
+      "Поставьте готовые бинарные пакеты из ветки main или соберите пакеты локально из шаблонов.",
+    architecturesTitle: "Пакеты собраны и протестированы для архитектур:",
+    architectureSelector: "Архитектура",
     groups: {
       manual: {
-        title: "Ручная сборка",
-        note: "Рекомендуется для ветки manual.",
+        title: "Сборка из исходников",
+        note: "Для ветки manual.",
       },
       prebuilt: {
         title: "Готовые бинарные пакеты",
-        note: "Доступно только для ветки main.",
+        note: "Только для ветки main.",
       },
     },
-    steps: {
-      cloneRepositories: "Склонировать этот репозиторий и void-packages",
-      switchBranch: "При необходимости переключиться на нужную ветку",
-      copyTemplates: "Скопировать шаблоны в void-packages",
-      editShlibs:
-        "Отредактировать shlibs: удалить строки из shlibs_remove и добавить shlibs_append",
-      bootstrapBuild: "Инициализировать систему сборки",
-      buildPackages: "Собрать нужные пакеты",
-      installBuiltPackages: "Установить собранные пакеты",
-      configureMirror: "Добавить зеркало Blackhole с повышенным приоритетом",
-      refreshRepo: "Обновить репозитории и принять отпечаток ключа",
-      searchRepo: "Найти и установить пакеты",
+    ruMirror: {
+      title: "Российское зеркало",
+      description:
+        "Рекомендуется пользователям из России и СНГ: ниже задержка и быстрее скачивание пакетов.",
     },
-    note: "Старые бинарные репозитории на GitHub больше не обновляются. Если вы использовали старую настройку, удалите /etc/xbps.d/20-repository-extra.conf перед добавлением актуального зеркала.",
+    steps: {
+      cloneRepositories: "Склонируйте этот репозиторий и void-packages",
+      switchBranch: "При необходимости переключитесь на нужную ветку",
+      copyTemplates: "Скопируйте шаблоны в void-packages",
+      editShlibs:
+        "Отредактируйте shlibs: удалите строки из shlibs_remove и добавьте из shlibs_append",
+      bootstrapBuild: "Инициализируйте систему сборки",
+      buildPackages: "Соберите нужные пакеты",
+      installBuiltPackages: "Установите собранные пакеты",
+      configureMirror: "Подключите зеркало Blackhole с приоритетом",
+      refreshRepo: "Обновите репозитории",
+      searchRepo: "Найдите и установите пакеты",
+    },
+    note: "Старые бинарные репозитории на GitHub больше не поддерживаются. Если вы использовали старую настройку, удалите /etc/xbps.d/20-repository-extra.conf перед подключением актуального зеркала.",
   },
 
   footer: {

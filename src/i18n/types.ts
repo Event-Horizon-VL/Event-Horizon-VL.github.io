@@ -67,7 +67,6 @@ export interface Translation {
       devel: string;
       utils: string;
     };
-    items: Record<string, string>;
   };
 
   install: {
@@ -84,6 +83,10 @@ export interface Translation {
         title: string;
         note: string;
       };
+    };
+    ruMirror: {
+      title: string;
+      description: string;
     };
     steps: {
       cloneRepositories: string;
