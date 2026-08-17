@@ -2,21 +2,22 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { LINKS } from "../constants";
 import { useI18n } from "../i18n";
-import { handleScrollLink, scrollTo } from "../composables/useScrollTo";
+import { useRouterNav } from "../composables/useRouterNav";
 import ThemeToggle from "./ThemeToggle.vue";
 import VoidLogo from "./ui/VoidLogo.vue";
 import LangSwitch from "./ui/LangSwitch.vue";
 
 const { t } = useI18n();
+const { go } = useRouterNav();
 
 const scrolled = ref(false);
 const mobileMenuOpen = ref(false);
 
 const navItems = computed(() => [
-  { label: t.value.nav.home, href: "#hero" },
-  { label: t.value.nav.features, href: "#features" },
-  { label: t.value.nav.packages, href: "#packages" },
-  { label: t.value.nav.install, href: "#install" },
+  { label: t.value.nav.home, href: "/" },
+  { label: t.value.nav.features, href: "/#features" },
+  { label: t.value.nav.packages, href: "/packages" },
+  { label: t.value.nav.install, href: "/#install" },
   { label: t.value.nav.github, href: LINKS.github, external: true },
 ]);
 
@@ -34,9 +35,11 @@ const closeMenu = () => {
   document.body.style.overflow = "";
 };
 
-const onNavClick = (e: Event, href: string) => {
+const onNavClick = (e: Event, item: { href: string; external?: boolean }) => {
   closeMenu();
-  handleScrollLink(e, href);
+  if (item.external) return;
+  e.preventDefault();
+  go(item.href);
 };
 
 onMounted(() => {
@@ -57,7 +60,7 @@ onUnmounted(() => {
         class="nav-brand"
         @click.prevent="
           closeMenu();
-          scrollTo('hero');
+          go('/');
         "
       >
         <VoidLogo :size="30" />
@@ -88,7 +91,7 @@ onUnmounted(() => {
             :target="item.external ? '_blank' : undefined"
             :rel="item.external ? 'noopener noreferrer' : undefined"
             class="nav-link"
-            @click="(e) => onNavClick(e, item.href)"
+            @click="(e) => onNavClick(e, item)"
           >
             {{ item.label }}
             <svg

@@ -214,6 +214,10 @@ a:hover {
   padding-bottom: clamp(3rem, 8vw, 6rem);
 }
 
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
 /* Utility: visually hidden */
 .sr-only {
   position: absolute;

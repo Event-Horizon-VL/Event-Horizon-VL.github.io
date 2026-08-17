@@ -1,10 +1,21 @@
 <script setup lang="ts">
-import { handleScrollLink } from "../../composables/useScrollTo";
+import { useRouterNav } from "../../composables/useRouterNav";
 
 defineProps<{
   title: string;
   links: { label: string; href: string; external?: boolean }[];
 }>();
+
+const { go } = useRouterNav();
+
+const onLinkClick = (
+  e: Event,
+  link: { href: string; external?: boolean },
+) => {
+  if (link.external) return;
+  e.preventDefault();
+  go(link.href);
+};
 </script>
 
 <template>
@@ -13,10 +24,10 @@ defineProps<{
     <ul>
       <li v-for="link in links" :key="link.label">
         <a
-          :href="link.external ? link.href : undefined"
+          :href="link.href"
           :target="link.external ? '_blank' : undefined"
           :rel="link.external ? 'noopener noreferrer' : undefined"
-          @click="(e: Event) => handleScrollLink(e, link.href)"
+          @click="(e: Event) => onLinkClick(e, link)"
         >
           {{ link.label }}
         </a>

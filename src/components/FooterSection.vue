@@ -51,9 +51,9 @@ const linkGroups = computed(() => [
   {
     title: t.value.footer.groups.repo,
     links: [
-      { label: t.value.footer.linkLabels.packages, href: "#packages" },
-      { label: t.value.footer.linkLabels.install, href: "#install" },
-      { label: t.value.footer.linkLabels.features, href: "#features" },
+      { label: t.value.footer.linkLabels.packages, href: "/packages" },
+      { label: t.value.footer.linkLabels.install, href: "/#install" },
+      { label: t.value.footer.linkLabels.features, href: "/#features" },
     ],
   },
 ]);
