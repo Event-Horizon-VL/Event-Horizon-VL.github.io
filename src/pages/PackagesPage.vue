@@ -330,7 +330,6 @@ loadArch(persistedArch);
 <style scoped>
 .packages-page {
   padding: clamp(4rem, 8vw, 6rem) 0 clamp(3rem, 8vw, 6rem);
-  background: var(--bg-secondary);
   min-height: 100vh;
 }
 
