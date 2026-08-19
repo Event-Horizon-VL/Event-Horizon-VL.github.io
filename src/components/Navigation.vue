@@ -328,6 +328,8 @@ onUnmounted(() => {
     text-align: center;
     width: 100%;
     max-width: 200px;
+    cursor: pointer;
+    user-select: none;
   }
 }
 </style>
