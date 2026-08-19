@@ -80,7 +80,7 @@ const buttons = computed(() => [
           <div class="terminal-line">
             <span class="prompt">$</span>
             <span class="command"
-              >sudo xbps-install -S telegram-desktop vesktop hyprland</span
+              >sudo xbps-install -S vinyl-player vesktop hyprland</span
             >
           </div>
           <div class="terminal-line output">
