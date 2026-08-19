@@ -190,6 +190,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 0.15rem;
+  cursor: pointer;
+  user-select: none;
 }
 
 .nav-link {
