@@ -77,10 +77,8 @@ const archTabs = computed(() =>
 const filteredPackages = computed(() => {
   const query = search.value.trim().toLowerCase();
   if (!query) return allPackages.value;
-  return allPackages.value.filter(
-    (pkg) =>
-      pkg.packageName.toLowerCase().includes(query) ||
-      pkg.shortDescription.toLowerCase().includes(query),
+  return allPackages.value.filter((pkg) =>
+    pkg.packageName.toLowerCase().includes(query),
   );
 });
 
