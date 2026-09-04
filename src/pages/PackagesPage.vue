@@ -123,7 +123,9 @@ const fetchAll = async (arch: string): Promise<ApiPackage[]> => {
 const loadArch = async (arch: string) => {
   const mem = archCache.get(arch);
   if (mem && Date.now() - mem.ts < CACHE_TTL_MS) {
-    allPackages.value = mem.packages;
+    allPackages.value = mem.packages.sort((a, b) =>
+      a.packageName.localeCompare(b.packageName),
+    );
     return;
   }
 
@@ -131,7 +133,9 @@ const loadArch = async (arch: string) => {
   const storedFresh = stored && Date.now() - stored.ts < PERSIST_TTL_MS;
 
   if (stored) {
-    allPackages.value = stored.packages;
+    allPackages.value = stored.packages.sort((a, b) =>
+      a.packageName.localeCompare(b.packageName),
+    );
     archCache.set(arch, stored);
     if (storedFresh) return;
   }
@@ -144,7 +148,9 @@ const loadArch = async (arch: string) => {
   try {
     const full = await fetchAll(arch);
     if (seq !== loadSeq) return;
-    allPackages.value = full;
+    allPackages.value = full.sort((a, b) =>
+      a.packageName.localeCompare(b.packageName),
+    );
     const entry = { packages: full, ts: Date.now() };
     archCache.set(arch, entry);
     saveToStorage(arch, full);
